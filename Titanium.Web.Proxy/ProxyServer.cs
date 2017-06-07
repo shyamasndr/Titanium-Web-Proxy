@@ -567,8 +567,8 @@ namespace Titanium.Web.Proxy
         {
             // Use built-in WebProxy class to handle PAC/WAPD scripts.
             var systemProxyResolver = new WebProxy();
-
-            var systemProxyUri = systemProxyResolver.GetProxy(sessionEventArgs.WebSession.Request.RequestUri);
+            var webrequest = WebRequest.Create(sessionEventArgs.WebSession.Request.RequestUri);
+            var systemProxyUri = webrequest.Proxy.GetProxy(sessionEventArgs.WebSession.Request.RequestUri);
 
             // TODO: Apply authorization
             var systemProxy = new ExternalProxy

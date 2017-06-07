@@ -45,7 +45,7 @@ namespace Titanium.Web.Proxy.Examples.Basic
             proxyServer.ServerCertificateValidationCallback += OnCertificateValidation;
             proxyServer.ClientCertificateSelectionCallback += OnCertificateSelection;
 
-            var explicitEndPoint = new ExplicitProxyEndPoint(IPAddress.Any, 8000, true)
+            var explicitEndPoint = new ExplicitProxyEndPoint(IPAddress.Any, 8888, true)
             {
                 //Exclude Https addresses you don't want to proxy
                 //Useful for clients that use certificate pinning
@@ -67,6 +67,7 @@ namespace Titanium.Web.Proxy.Examples.Basic
             //An explicit endpoint is where the client knows about the existence of a proxy
             //So client sends request in a proxy friendly manner
             proxyServer.AddEndPoint(explicitEndPoint);
+            proxyServer.ForwardToUpstreamGateway = true;
             proxyServer.Start();
 
 
